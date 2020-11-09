@@ -36,7 +36,7 @@ sequelize.authenticate()
     });
   
 
-  const eraseDatabaseOnSync = true;
+  const eraseDatabaseOnSync = false;
 
 
 

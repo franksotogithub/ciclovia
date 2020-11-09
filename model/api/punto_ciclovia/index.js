@@ -17,7 +17,7 @@ const PuntoCiclovia = sequelize.define('punto_ciclovia', {
   seccion_vial_normativa: { type: Sequelize.STRING(100), allowNull: true },//	varchar
   seccion_vial_actual: { type: Sequelize.STRING(100), allowNull: true },//	varchar
   tipo: { type: Sequelize.STRING(100), allowNull: true },//	varchar
-  ancho: { type: Sequelize.INTEGER, allowNull: true },//	varchar
+  tipo_ancho: { type: Sequelize.FLOAT, allowNull: true },//	varchar
 
   ele_seg_tipo: { type: Sequelize.STRING(100), allowNull: true },//	varchar
   ele_seg_estado: { type: Sequelize.STRING(100), allowNull: true },//	varchar
@@ -25,9 +25,10 @@ const PuntoCiclovia = sequelize.define('punto_ciclovia', {
   ele_senial_ver_estado: { type: Sequelize.STRING(100), allowNull: true },//	varchar
 
   ele_senial_hor_tipo: { type: Sequelize.STRING(100), allowNull: true },//	varchar
-  ele_senial_hor_valor: { type: Sequelize.STRING(100), allowNull: true },//	varchar
+  ele_senial_hor_valor: { type: Sequelize.FLOAT, allowNull: true },//	varchar
   supe_rodadura_tipo: { type: Sequelize.STRING(100), allowNull: true },//	varchar
-  supe_rodadura_valor: { type: Sequelize.STRING(100), allowNull: true },//	varchar   
+  supe_rodadura_valor: { type: Sequelize.FLOAT, allowNull: true },//	varchar   
+  
   latitud: { type: Sequelize.FLOAT, allowNull: true },  
   longitud: { type: Sequelize.FLOAT, allowNull: true },  
 });
