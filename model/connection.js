@@ -1,12 +1,9 @@
 
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
+
+const {DATABASE,USER,PASSWORD,HOST,BASE_PORT } = require('../config');
 
 
-DATABASE ='DEV_TEST'
-USER ='sa'
-PASSWORD = 'Noepao40'
-HOST ='10.0.102.135'
-PORT ='1a33'
 
 let sequelize = null;
 
@@ -14,7 +11,7 @@ if (!sequelize) {
   sequelize = new Sequelize(DATABASE, USER, PASSWORD, {
     host: HOST,
     dialect: 'mssql',
-    port:PORT,
+    port:BASE_PORT,
     dialectOptions: {
         options: {
             instanceName: 'SQLSERVERIMP',
@@ -29,7 +26,7 @@ if (!sequelize) {
 
 sequelize.authenticate()
     .then(() => {
-        console.log('Conectado')
+        console.log('>>>>>>>Conectado')
     })
     .catch(err => {
         console.log('No se conecto')

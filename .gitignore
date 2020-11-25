@@ -3,3 +3,4 @@ app.js
 model/connection.js
 iisnode/*
 web.config
+.env
