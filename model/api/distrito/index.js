@@ -2,15 +2,14 @@ const { sequelize } = require("../../connection");
 const Sequelize = require('sequelize');
 
 
-const Via = sequelize.define('via', {
+const Distrito = sequelize.define('distrito_lima', {
   /***id */
   OBJECTID: {
-    type: Sequelize.INTEGER,
-    
+    type: Sequelize.INTEGER,    
     primaryKey: true,
   },
   /***datos iniciales */
-  Name: { type: Sequelize.STRING(250), allowNull: false },
+  NOMBDIST: { type: Sequelize.STRING(250), allowNull: false },
   GeoJson : { type: Sequelize.TEXT, allowNull: false },
   
 },
@@ -22,6 +21,6 @@ const Via = sequelize.define('via', {
 }
 );
 
-module.exports = { Via };
+module.exports = { Distrito };
 
 

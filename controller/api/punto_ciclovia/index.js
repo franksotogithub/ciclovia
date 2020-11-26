@@ -1,5 +1,6 @@
 const PuntoCicloviaService = require('../../../services/punto-ciclovia-service');
 const Util = require('../../../utils/Util');
+const { Op } = require("sequelize");
 
 const util = new Util();
 
@@ -7,7 +8,24 @@ class PuntoCicloviaController {
 
     static async getAllPuntoCiclovia(req, res) {
         try {
-            const data = await PuntoCicloviaService.GetAllPuntoCiclovia();
+            /*
+            console.log('req>>>',req.user);
+            */
+            let query ={};    
+            let  optionsQuery=[];
+            if(req.user){
+
+               optionsQuery.push({ usuario: req.user.username })
+
+            }
+
+            if (optionsQuery && optionsQuery.length > 0) {
+                query = {
+                  [Op.and]: optionsQuery
+                }
+              }
+
+            const data = await PuntoCicloviaService.GetAllPuntoCiclovia(query);
             if (data && data.length > 0) {
                 util.setSuccess(200, 'Datos encontrados con éxisto', data);
             } else {

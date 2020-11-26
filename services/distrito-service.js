@@ -1,12 +1,12 @@
-const { Via } = require('../model/api/via/index');
+const { Distrito } = require('../model/api/distrito/index');
 const { sequelize } = require("../model/connection");
 const { QueryTypes } = require('sequelize');
 
-class ViaService {
+class DistritoService {
 
-    static async GetAllVia() {
+    static async GetAllDistrito() {
         try {
-            return await Via.findAll({
+            return await Distrito.findAll({
                  order: [
                     ['OBJECTID', 'ASC'],
                 ]
@@ -16,9 +16,9 @@ class ViaService {
         }
     }
 
-    static async GetViaForId(id) {
+    static async GetDistritoForId(id) {
         try {
-            return await Via.findOne({
+            return await Distrito.findOne({
                 where: { OBJECTID: id }
             });
         } catch (error) {
@@ -30,19 +30,19 @@ class ViaService {
 
    
 
-    static async ViaCercana(x,y) {
+    static async DistritoCercano(x,y) {
 
         try {
-            return await sequelize.query("exec  dbo.LineaCercana :x,:y,:spatialReference ", 
+            return await sequelize.query("exec  dbo.DistritoCercano :x,:y,:spatialReference ", 
             {   type: QueryTypes.SELECT , 
-                model: Via,
+                model: Distrito,
                 mapToModel: true ,// pass true here if you have any mapped fields
                 replacements: { x: x,  y:y,spatialReference:4326 },
             }
             
             );
             /*
-            return await Via.update(body,
+            return await Distrito.update(body,
                 { where: { OBJECTID: id } });*/
         } catch (error) {
             throw error;
@@ -53,4 +53,4 @@ class ViaService {
 
 
 
-module.exports = ViaService;
+module.exports = DistritoService;

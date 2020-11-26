@@ -88,7 +88,7 @@ passport.use(new JWTStrategy({
 
         console.log('jwtPayload>>>',jwtPayload);
         
-        return cb(null, true);
+        return cb(null, jwtPayload);
         //find the user in db if needed
         
         

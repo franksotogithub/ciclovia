@@ -1,10 +1,12 @@
+const { query } = require('express');
 const { PuntoCiclovia } = require('../model/api/punto_ciclovia/index');
 
 class PuntoCicloviaService {
 
-    static async GetAllPuntoCiclovia() {
+    static async GetAllPuntoCiclovia(query) {
         try {
             return await PuntoCiclovia.findAll({
+                where:query,
                  order: [
                     ['id_punto_ciclovia', 'ASC'],
                 ]

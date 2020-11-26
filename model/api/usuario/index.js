@@ -15,7 +15,10 @@ const Usuario = sequelize.define('usuario', {
   name: { type: Sequelize.STRING(200), allowNull: true },//	varchar
   first_name: { type:Sequelize.STRING(200), allowNull: true },  
   last_name: { type: Sequelize.STRING(200), allowNull: true },  
-});
+},
+
+
+);
 
 
 module.exports = { Usuario };
