@@ -1,13 +1,13 @@
-const ViaService = require('../../../services/via-service');
+const CicloViaService = require('../../../services/ciclo-via-service');
 const Util = require('../../../utils/Util');
 
 const util = new Util();
 
-class ViaController {
+class CicloViaController {
 
-    static async getAllVia(req, res) {
+    static async getAllCicloVia(req, res) {
         try {
-            const data = await ViaService.GetAllVia();
+            const data = await CicloViaService.GetAllCicloVia();
             if (data && data.length > 0) {
                 util.setSuccess(200, 'Datos encontrados con éxisto', data);
             } else {
@@ -22,11 +22,11 @@ class ViaController {
     }
 
 
-    static async getVia(req, res) {
+    static async getCicloVia(req, res) {
 
         const { id } = req.params
         try {
-            const data = await ViaService.GetViaForId(id);
+            const data = await CicloViaService.GetCicloViaForId(id);
             if (data != null) {
                 util.setSuccess(200, 'Datos encontrados con éxisto', data);
             } else {
@@ -43,17 +43,17 @@ class ViaController {
 
 
 
-    static async ViaCercana(req, res) {
+    static async CicloViaCercana(req, res) {
 
         try {
       
             const { x,y } = req.query;
 
             if(x && y ){
-                const data = await ViaService.ViaCercana(x,y);
+                const data = await CicloViaService.CicloViaCercana(x,y);
                 console.log(data);
                 if (data != null) {
-                    util.setSuccess(200, 'via cercana',data);
+                    util.setSuccess(200, 'CicloVia cercana',data);
                 } else {
                     util.setSuccess(200, 'Algo salio mal', null);
                 }
@@ -76,4 +76,4 @@ class ViaController {
 }
 
 
-module.exports = ViaController;
+module.exports = CicloViaController;

@@ -1,12 +1,12 @@
-const { Via } = require('../model/api/via/index');
+const { CicloVia } = require('../model/api/ciclo_via/index');
 const { sequelize } = require("../model/connection");
 const { QueryTypes } = require('sequelize');
 
-class ViaService {
+class CicloViaService {
 
-    static async GetAllVia() {
+    static async GetAllCicloVia() {
         try {
-            return await Via.findAll({
+            return await CicloVia.findAll({
                  order: [
                     ['OBJECTID', 'ASC'],
                 ]
@@ -16,9 +16,9 @@ class ViaService {
         }
     }
 
-    static async GetViaForId(id) {
+    static async GetCicloViaForId(id) {
         try {
-            return await Via.findOne({
+            return await CicloVia.findOne({
                 where: { OBJECTID: id }
             });
         } catch (error) {
@@ -30,19 +30,19 @@ class ViaService {
 
    
 
-    static async ViaCercana(x,y) {
+    static async CicloViaCercana(x,y) {
 
         try {
-            return await sequelize.query("exec  dbo.LineaCercana :x,:y,:spatialReference ", 
+            return await sequelize.query("exec  dbo.ciclo_via_cercana :x,:y,:spatialReference ", 
             {   type: QueryTypes.SELECT , 
-                model: Via,
+                model: CicloVia,
                 mapToModel: true ,// pass true here if you have any mapped fields
                 replacements: { x: x,  y:y,spatialReference:4326 },
             }
             
             );
             /*
-            return await Via.update(body,
+            return await CicloVia.update(body,
                 { where: { OBJECTID: id } });*/
         } catch (error) {
             throw error;
@@ -53,4 +53,4 @@ class ViaService {
 
 
 
-module.exports = ViaService;
+module.exports = CicloViaService;

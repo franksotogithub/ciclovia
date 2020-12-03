@@ -78,46 +78,6 @@ class UsuarioService {
     }
 
 
-    static async Login(body){
-
-        console.log('body>>>',body);
-        var username = body.username;
-        var password = body.password;
-
-
-        try{
-
-        
-        let usuario= await Usuario.findOne(
-            { where: { 
-                username: username,
-            } }
-            
-            );
-        
-
-            if(!usuario){
-                throw new Error('No existe el usuario');
-            }
-
-            else{
-
-                console.log(usuario.password,password)
-                const match = await bcrypt.compare( password,usuario.password);
-
-                if(match)
-                    return usuario;
-                else
-                    return null;
-            }           
-            
-        }
-        catch(error){
-            throw error;
-        }
-
-    }
-
 
 }
 

@@ -1,29 +1,18 @@
-const PuntoCicloviaService = require('../../../services/punto-ciclovia-service');
+const ElementTramoService = require('../../../services/element-tramo-service');
 const Util = require('../../../utils/Util');
 const { Op } = require("sequelize");
-
 const util = new Util();
 
-class PuntoCicloviaController {
+class ElementTramoController {
 
-    static async getAllPuntoCiclovia(req, res) {
+    static async getAllElementTramo(req, res) {
         try {
-     
-            let query ={};    
+            let query ={}; 
             let  optionsQuery=[];
-            if(req.user){
 
-               optionsQuery.push({ usuario: req.user.username })
+            const data = await ElementTramoService.GetAllElementTramo(query);
 
-            }
 
-            if (optionsQuery && optionsQuery.length > 0) {
-                query = {
-                  [Op.and]: optionsQuery
-                }
-              }
-
-            const data = await PuntoCicloviaService.GetAllPuntoCiclovia(query);
             if (data && data.length > 0) {
                 util.setSuccess(200, 'Datos encontrados con éxisto', data);
             } else {
@@ -38,11 +27,11 @@ class PuntoCicloviaController {
     }
 
 
-    static async getPuntoCiclovia(req, res) {
+    static async getElementTramo(req, res) {
 
-        const { number } = req.params
+        const { id } = req.params
         try {
-            const data = await PuntoCicloviaService.GetPuntoCicloviaForNumber(number);
+            const data = await ElementTramoService.GetElementTramoForId(id);
             if (data != null) {
                 util.setSuccess(200, 'Datos encontrados con éxisto', data);
             } else {
@@ -56,10 +45,10 @@ class PuntoCicloviaController {
         }
     }
 
-    static async createPuntoCiclovia(req, res) {
+    static async createElementTramo(req, res) {
         try {
             const body = req.body;
-            const data = await PuntoCicloviaService.CreatePuntoCiclovia(body);
+            const data = await ElementTramoService.CreateElementTramo(body);
             if (data != null) {
                 util.setSuccess(200, 'Registro con éxisto', data);
             } else {
@@ -73,15 +62,17 @@ class PuntoCicloviaController {
         }
     }
 
-    static async updatePuntoCiclovia(req, res) {
+    static async updateElementTramo(req, res) {     
+
         try {
+
             const body = req.body;
             const { id } = req.params;
-            const data = await PuntoCicloviaService.UpdatePuntoCiclovia(body, id);
+            const data = await ElementTramoService.UpdateElementTramo(body, id);
             if (data != null) {
-                util.setSuccess(200, 'Actualizado con éxito', data);
+                util.setSuccess(200, 'Datos actualizados con exito', data);
             } else {
-                util.setSuccess(200, 'Algo salio mal', []);
+                util.setSuccess(200, 'No se ha enscontrado datos en el sistema', []);
             }
             return util.send(res);
         } catch (error) {
@@ -91,15 +82,18 @@ class PuntoCicloviaController {
         }
     }
 
-    static async removePuntoCiclovia(req, res) {
+
+    static async deleteElementTramo(req, res) {     
+
         try {
-            const body = { status: false };
+
             const { id } = req.params;
-            const data = await PuntoCicloviaService.UpdatePuntoCiclovia(body, id);
+            const data = await ElementTramoService.DeleteElementTramo(id);
+            
             if (data != null) {
-                util.setSuccess(200, 'Removido con éxisto');
+                util.setSuccess(200, 'Dato eliminado con exito', data);
             } else {
-                util.setSuccess(200, 'Algo salio mal', []);
+                util.setSuccess(200, 'No se ha encontrado datos en el sistema', []);
             }
             return util.send(res);
         } catch (error) {
@@ -108,9 +102,10 @@ class PuntoCicloviaController {
             return util.send(res);
         }
     }
+
 
 
 }
 
 
-module.exports = PuntoCicloviaController;
+module.exports = ElementTramoController;

@@ -2,7 +2,7 @@ const { sequelize } = require("../../connection");
 const Sequelize = require('sequelize');
 
 
-const Via = sequelize.define('via', {
+const CicloVia = sequelize.define('ciclo_via', {
   /***id */
   OBJECTID: {
     type: Sequelize.INTEGER,
@@ -22,6 +22,6 @@ const Via = sequelize.define('via', {
 }
 );
 
-module.exports = { Via };
+module.exports = { CicloVia };
 
 

@@ -33,7 +33,7 @@ class DistritoService {
     static async DistritoCercano(x,y) {
 
         try {
-            return await sequelize.query("exec  dbo.DistritoCercano :x,:y,:spatialReference ", 
+            return await sequelize.query("exec  dbo.distrito_cercano :x,:y,:spatialReference ", 
             {   type: QueryTypes.SELECT , 
                 model: Distrito,
                 mapToModel: true ,// pass true here if you have any mapped fields
