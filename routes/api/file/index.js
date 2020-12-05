@@ -17,6 +17,6 @@ router.post('/upload',upload.single('file'),(req,res)=>{
     /*return res.send(req.file);*/
     
 
-    return res.json( {message:'Foto subida correctamente', q:'holass' });
+    return res.json( {message:'Foto subida correctamente', q:'holass',file:req.file });
 });
 module.exports = router
