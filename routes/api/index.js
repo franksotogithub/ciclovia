@@ -14,6 +14,7 @@ router.use("/distrito",authenticateJwt, require("./distrito/index"))
 router.use("/tramo",authenticateJwt, require("./tramo/index"))
 router.use("/element_tramo",authenticateJwt, require("./element_tramo/index"))
 router.use("/auth", require("./auth/index"))
+router.use("/file",require("./file/index"))
 module.exports = router;
 
 
