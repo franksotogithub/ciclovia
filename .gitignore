@@ -4,3 +4,4 @@ model/connection.js
 iisnode/*
 web.config
 .env
+uploads/*
