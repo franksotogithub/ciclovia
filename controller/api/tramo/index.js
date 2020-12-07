@@ -90,6 +90,35 @@ class TramoController {
     }
 
 
+    static async tramoCercano(req, res) {
+
+        try {
+      
+            const { x,y } = req.query;
+
+            if(x && y ){
+                const data = await TramoService.TramoCercano(x,y);
+                console.log(data);
+                if (data != null) {
+                    util.setSuccess(200, 'Tramo cercana',data);
+                } else {
+                    util.setSuccess(200, 'Algo salio mal', null);
+                }
+            }
+
+            else 
+                util.setSuccess(200, 'Parametros no validos', null);
+            
+            return util.send(res);
+        } catch (error) {
+            console.log(error);
+            util.setError(500, 'Error', error);
+            return util.send(res);
+        }
+
+
+    }
+
 
 }
 

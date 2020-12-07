@@ -40,6 +40,24 @@ class TramoService {
     }
 
 
+    static async TramoCercano(x,y) {
+
+        try {
+            return await sequelize.query("exec  dbo.tramo_cercano :x,:y,:spatialReference ", 
+            {   type: QueryTypes.SELECT , 
+                model: Tramo,
+                mapToModel: true ,// pass true here if you have any mapped fields
+                replacements: { x: x,  y:y,spatialReference:4326 },
+            }
+            
+            );
+            /*
+            return await CicloVia.update(body,
+                { where: { OBJECTID: id } });*/
+        } catch (error) {
+            throw error;
+        }
+    }
 
 }
 
