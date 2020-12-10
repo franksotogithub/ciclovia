@@ -25,7 +25,8 @@ class ElementTramoService {
     static async GetElementTramoForId(id) {
         try {
             return await ElementTramo.findOne({
-                where: { id: id }
+                where: { id: id },
+                include: TramoDetail
             });
         } catch (error) {
             throw error;
