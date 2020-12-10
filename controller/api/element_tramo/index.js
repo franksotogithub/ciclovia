@@ -7,8 +7,19 @@ class ElementTramoController {
 
     static async getAllElementTramo(req, res) {
         try {
-            let query ={}; 
+            let query ={};    
             let  optionsQuery=[];
+            if(req.user){
+
+               optionsQuery.push({ usuario: req.user.username })
+
+            }
+
+            if (optionsQuery && optionsQuery.length > 0) {
+                query = {
+                  [Op.and]: optionsQuery
+                }
+            }
 
             const data = await ElementTramoService.GetAllElementTramo(query);
 
