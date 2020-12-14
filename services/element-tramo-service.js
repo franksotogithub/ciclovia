@@ -44,6 +44,7 @@ class ElementTramoService {
 
     static async CreateElementTramo(body) {
         try {
+            
             return await ElementTramo.create(body);
         } catch (error) {
             throw error;

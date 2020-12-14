@@ -1,15 +1,15 @@
-const CicloViaService = require('../../../services/via-service');
+const ViaService = require('../../../services/via-service');
 const Util = require('../../../utils/Util');
 
 const util = new Util();
 
-class CicloViaController {
+class ViaController {
 
-    static async getAllCicloVia(req, res) {
+    static async getAllVia(req, res) {
         try {
-            const data = await CicloViaService.GetAllCicloVia();
+            const data = await ViaService.GetAllVia();
             if (data && data.length > 0) {
-                util.setSuccess(200, 'Datos encontrados con éxito', data);
+                util.setSuccess(200, 'Datos encontrados con éxisto', data);
             } else {
                 util.setSuccess(200, 'No se ha encontrado datos en el sistema', []);
             }
@@ -22,13 +22,13 @@ class CicloViaController {
     }
 
 
-    static async getCicloVia(req, res) {
+    static async getVia(req, res) {
 
         const { id } = req.params
         try {
-            const data = await CicloViaService.GetCicloViaForId(id);
+            const data = await ViaService.GetViaForId(id);
             if (data != null) {
-                util.setSuccess(200, 'Datos encontrados con éxito', data);
+                util.setSuccess(200, 'Datos encontrados con éxisto', data);
             } else {
                 util.setSuccess(200, 'No se ha encontrado datos en el sistema', []);
             }
@@ -42,18 +42,17 @@ class CicloViaController {
 
 
 
-
-    static async CicloViaCercana(req, res) {
+    static async ViaCercana(req, res) {
 
         try {
       
             const { x,y } = req.query;
 
             if(x && y ){
-                const data = await CicloViaService.CicloViaCercana(x,y);
+                const data = await ViaService.ViaCercana(x,y);
                 console.log(data);
                 if (data != null) {
-                    util.setSuccess(200, 'CicloVia cercana',data);
+                    util.setSuccess(200, 'Via cercana',data);
                 } else {
                     util.setSuccess(200, 'Algo salio mal', null);
                 }
@@ -76,4 +75,4 @@ class CicloViaController {
 }
 
 
-module.exports = CicloViaController;
+module.exports = ViaController;

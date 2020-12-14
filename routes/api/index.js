@@ -9,7 +9,7 @@ router.use("/anexe",authenticateJwt, require("./anexe/index"))
 
 router.use("/punto_ciclovia",authenticateJwt, require("./punto_ciclovia/index"))
 router.use("/usuario",authenticateJwt, require("./usuario/index"))
-router.use("/via",authenticateJwt, require("./ciclo_via/index"))
+router.use("/via",authenticateJwt, require("./via/index"))
 router.use("/distrito",authenticateJwt, require("./distrito/index"))
 router.use("/tramo",authenticateJwt, require("./tramo/index"))
 router.use("/element_tramo",authenticateJwt, require("./element_tramo/index"))
