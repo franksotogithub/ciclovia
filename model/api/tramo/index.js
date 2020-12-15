@@ -6,7 +6,7 @@ const Tramo = sequelize.define('tramo', {
   /***id */
   id: {
     type: Sequelize.INTEGER,   
-    autoIncrement: true, 
+    /*autoIncrement: true, */
     primaryKey: true,
 
   },
@@ -46,7 +46,7 @@ const Tramo = sequelize.define('tramo', {
 
 {
   freezeTableName: true, // Model tableName will be the same as the model name
-  /*timestamps: false,*/
+  timestamps: false,
   
 }
 );

@@ -7,8 +7,8 @@ const ElementTramo = sequelize.define('element_tramo', {
   /***id */
   id: {
     type: Sequelize.INTEGER,
-    autoIncrement: true,
     primaryKey: true,
+    autoIncrement: true,
   },
   /***datos iniciales */
   id_tramo: { type: Sequelize.INTEGER, allowNull: false },
