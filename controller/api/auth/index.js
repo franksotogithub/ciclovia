@@ -25,7 +25,7 @@ class AuthController {
                     }
 
                     // generate a signed son web token with the contents of user object and return it in the response
-                    const token = jwt.sign({ id: user.id, username: user.username}, SECRET_KEY);
+                    const token = jwt.sign({ id: user.id, username: user.username,id_rol:user.id_rol }, SECRET_KEY);
                     
                     
                     util.setSuccess(200, 'login exitoso',{user: {
@@ -33,7 +33,8 @@ class AuthController {
                         username: user.username,
                         name:user.name,
                         first_name:user.first_name,
-                        last_name:user.last_name 
+                        last_name:user.last_name,
+                        id_rol :user.id_rol,
                     }, token});
 
                     return util.send(res);

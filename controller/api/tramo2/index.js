@@ -1,11 +1,11 @@
-const TramoService = require('../../../services/tramo-service');
+const Tramo2Service = require('../../../services/tramo2-service');
 const Util = require('../../../utils/Util');
 const { Op } = require("sequelize");
 const util = new Util();
 
-class TramoController {
+class Tramo2Controller {
 
-    static async getAllTramo(req, res) {
+    static async getAllTramo2(req, res) {
         try {
             let query ={}; 
             let  optionsQuery=[];
@@ -13,7 +13,7 @@ class TramoController {
 
             if(req.query){
                 let id_via=req.query.id_via;
-                    
+
                 if(id_via){
                     optionsQuery.push({ id_via: id_via });
                  }
@@ -30,7 +30,7 @@ class TramoController {
          
 
 
-            const data = await TramoService.GetAllTramo(query);
+            const data = await Tramo2Service.GetAllTramo2(query);
 
        
             if (data && data.length > 0) {
@@ -47,11 +47,11 @@ class TramoController {
     }
 
 
-    static async getTramo(req, res) {
+    static async getTramo2(req, res) {
 
         const { id } = req.params
         try {
-            const data = await TramoService.GetTramoForId(id);
+            const data = await Tramo2Service.GetTramo2ForId(id);
             if (data != null) {
                 util.setSuccess(200, 'Datos encontrados con éxisto', data);
             } else {
@@ -67,7 +67,7 @@ class TramoController {
 
 
 
-    static async updateTramo(req, res) {
+    static async updateTramo2(req, res) {
 
        
         try {
@@ -75,7 +75,7 @@ class TramoController {
 
             const body = req.body;
             const { id } = req.params;
-            const data = await TramoService.UpdateTramo(body, id);
+            const data = await Tramo2Service.UpdateTramo2(body, id);
             if (data != null) {
                 util.setSuccess(200, 'Datos actualizados con exito', data);
             } else {
@@ -90,17 +90,17 @@ class TramoController {
     }
 
 
-    static async tramoCercano(req, res) {
+    static async tramo2Cercano(req, res) {
 
         try {
       
             const { x,y } = req.query;
 
             if(x && y ){
-                const data = await TramoService.TramoCercano(x,y);
+                const data = await Tramo2Service.Tramo2Cercano(x,y);
                 console.log(data);
                 if (data != null) {
-                    util.setSuccess(200, 'Tramo cercana',data);
+                    util.setSuccess(200, 'Tramo2 cercana',data);
                 } else {
                     util.setSuccess(200, 'Algo salio mal', null);
                 }
@@ -123,4 +123,4 @@ class TramoController {
 }
 
 
-module.exports = TramoController;
+module.exports = Tramo2Controller;
