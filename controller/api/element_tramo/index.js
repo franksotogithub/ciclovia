@@ -10,9 +10,12 @@ class ElementTramoController {
             let query ={};    
             let  optionsQuery=[];
             if(req.user){
+                let rol = req.user.id_rol?parseInt(req.user.id_rol):null;
 
-               optionsQuery.push({ usuario: req.user.username })
-
+                console.log('rol>>',rol);
+                if(rol==1){
+                    optionsQuery.push({ usuario: req.user.username })
+                }
             }
 
             if (optionsQuery && optionsQuery.length > 0) {

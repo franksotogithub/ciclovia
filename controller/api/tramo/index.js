@@ -13,7 +13,7 @@ class TramoController {
 
             if(req.query){
                 let id_via=req.query.id_via;
-
+                    
                 if(id_via){
                     optionsQuery.push({ id_via: id_via });
                  }
