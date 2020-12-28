@@ -11,7 +11,7 @@ const ElementTramo = sequelize.define('element_tramo', {
     autoIncrement: true,
   },
   /***datos iniciales */
-  id_tramo: { type: Sequelize.INTEGER, allowNull: false },
+  id_tramo: { type: Sequelize.INTEGER, allowNull: true },
   elemento : { type: Sequelize.STRING(50), allowNull: true },
   tipo : { type: Sequelize.STRING(50), allowNull: true },
   estado : { type: Sequelize.STRING(50), allowNull: true },
@@ -21,31 +21,11 @@ const ElementTramo = sequelize.define('element_tramo', {
   observacion: { type: Sequelize.STRING(255), allowNull: true },
   img: { type: Sequelize.TEXT, allowNull: true },
   usuario: { type: Sequelize.STRING(50), allowNull: true },
-  /*shape : {
-    type: Sequelize.GEOMETRY('POINT'),
-    allowNull: true
-
-   }*/
 },
 
 {
   freezeTableName: true, 
    hasTrigger: true ,
-/*
-classMethods: {
-
-  hooks: {
-    afterCreate: function(element_tramo){
-      element_tramo
-
-    }
-
-
-  }
-
-}*/
-
-
 },
 
 );
